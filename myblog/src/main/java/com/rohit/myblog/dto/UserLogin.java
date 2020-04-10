@@ -1,10 +1,9 @@
 package com.rohit.myblog.dto;
 
-public class UserRegistration {
+public class UserLogin {
 	
 	private String username;
 	private String password;
-	private String email;
 	public String getUsername() {
 		return username;
 	}
@@ -17,13 +16,5 @@ public class UserRegistration {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
-	
-
 }

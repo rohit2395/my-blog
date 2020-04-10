@@ -6,8 +6,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import com.rohit.myblog.common.BlogConstants;
+
 @Entity
-@Table(name = Constants.POST_TABLE,schema=Constants.SCHEMA)
+@Table(name = BlogConstants.POST_TABLE,schema=BlogConstants.SCHEMA)
 public class Post {
 	
 	@Id

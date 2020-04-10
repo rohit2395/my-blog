@@ -1,9 +1,16 @@
 package com.rohit.myblog.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.rohit.myblog.common.BlogConstants;
 
 @Entity
-@Table(name = Constants.USER_TABLE,schema=Constants.SCHEMA)
+@Table(name = BlogConstants.USER_TABLE,schema=BlogConstants.SCHEMA)
 public class User {
 	
 	@Id
@@ -20,7 +27,7 @@ public class User {
 	private String email;
 	
 	@Column
-	private Role role;
+	private String role;
 
 	public Long getId() {
 		return id;
@@ -54,11 +61,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Role getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	

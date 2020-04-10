@@ -2,30 +2,34 @@ package com.rohit.myblog.exceptions;
 
 import java.text.MessageFormat;
 
+import org.springframework.http.HttpStatus;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class BlogException extends Exception{
 	
-	private int errorCode;
+	private HttpStatus errorCode;
 	private String errorMessage;
 	private Exception e;
 	
 	public BlogException(Error error,Exception e) {
-		this.errorCode = error.getStatus().value();
+		this.errorCode = error.getStatus();
 		this.errorMessage = error.getMsg();
 		this.e = e;
 	}
 	
 	public BlogException(Error error,String[] params,Exception e) {
-		this.errorCode = error.getStatus().value();
+		this.errorCode = error.getStatus();
 		MessageFormat mf = new MessageFormat(error.getMsg());
 		this.errorMessage = mf.format(params);
 		this.e = e;
 	}
 
-	public int getErrorCode() {
+	public HttpStatus getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(int errorCode) {
+	public void setErrorCode(HttpStatus errorCode) {
 		this.errorCode = errorCode;
 	}
 

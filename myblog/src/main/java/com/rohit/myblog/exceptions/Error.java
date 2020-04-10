@@ -8,7 +8,8 @@ public enum Error {
 	
 	
 	//User login errors
-	USER_REGISTRATION_FAILED("User {0} registration failed",HttpStatus.INTERNAL_SERVER_ERROR);
+	USER_REGISTRATION_FAILED("User {0} registration failed",HttpStatus.INTERNAL_SERVER_ERROR),
+	USER_LOGIN_FAILED("Authentication failed for uer {0}",HttpStatus.UNAUTHORIZED);
 	
 	private String msg;
 	private HttpStatus status;

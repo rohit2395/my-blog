@@ -1,5 +1,7 @@
 package com.rohit.myblog.service;
 
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.rohit.myblog.controller.LoginController;
 import com.rohit.myblog.dto.UserLogin;
 import com.rohit.myblog.dto.UserRegistration;
 import com.rohit.myblog.exceptions.BlogException;
@@ -72,6 +72,11 @@ public class LoginService {
 		}
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return jwtTokenProvider.generateToken(authentication);
+	}
+
+	public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
+		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return Optional.of(principal);
 	}
 	
 }

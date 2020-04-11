@@ -30,9 +30,13 @@ public class LoginController {
 	private LoginService loginService;
 	
 	@PostMapping("/signup")
-	public ResponseEntity signup(@RequestBody UserRegistration userRegistration) throws BlogException {
+	public ResponseEntity<?> signup(@RequestBody UserRegistration userRegistration){
 		LOG.info("Receieved request for user registration..");
-		loginService.createUser(userRegistration);
+		try {
+			loginService.createUser(userRegistration);
+		} catch (BlogException e) {
+			return new ResponseEntity<ApiResponse>(BlogUtil.buildApiResoponse(e),e.getErrorCode());
+		}
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
 				BlogUtil.buildApiResoponse(UIMessages.USER_REGISTERED,HttpStatus.OK)
 				,HttpStatus.OK);
@@ -40,16 +44,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity login(@RequestBody UserLogin userLogin) throws BlogException {
+	public ResponseEntity<?> login(@RequestBody UserLogin userLogin){
 		LOG.info("Receieved request for user login..");
-		String token = null;
+		StringBuilder token = null;
 		try {
-			token = loginService.login(userLogin);
+			token = new StringBuilder("Bearer ");
+			token.append(loginService.login(userLogin));			
 		}catch(BlogException e) {
 			return new ResponseEntity<ApiResponse>(BlogUtil.buildApiResoponse(e),e.getErrorCode());
 		}
 		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.set(BlogConstants.TOKEN_HEADER_KEY, token);
+		responseHeaders.set(BlogConstants.TOKEN_HEADER_KEY, token.toString());
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
 				BlogUtil.buildApiResoponse(UIMessages.TOKEN_OBTAINED,HttpStatus.OK)
 				,responseHeaders

@@ -1,0 +1,23 @@
+
+.title{
+    color: #3B3B3B;
+    text-decoration: none;
+ }
+  
+.login,.register{
+    text-decoration: none;
+    color: #3B3B3B;
+    float: right;
+} 
+
+.toolbar{
+    background: #C3E2ED;
+    position: fixed;
+    margin-bottom: 25px;
+}
+.toolbar-placeholder{
+    background: #C3E2ED;
+    
+    margin-bottom: 25px;
+}
+

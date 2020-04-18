@@ -3,8 +3,10 @@ package com.rohit.myblog.dto;
 public class UserRegistration {
 	
 	private String username;
-	private String password;
 	private String email;
+	private String password;
+	private String confirmPassword;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -23,7 +25,12 @@ public class UserRegistration {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 	
 
 }

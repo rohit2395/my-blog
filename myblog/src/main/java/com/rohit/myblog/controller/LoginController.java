@@ -38,8 +38,8 @@ public class LoginController {
 			return new ResponseEntity<ApiResponse>(BlogUtil.buildApiResoponse(e),e.getErrorCode());
 		}
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
-				BlogUtil.buildApiResoponse(UIMessages.USER_REGISTERED,HttpStatus.OK)
-				,HttpStatus.OK);
+				BlogUtil.buildApiResoponse(UIMessages.USER_REGISTERED,HttpStatus.CREATED)
+				,HttpStatus.CREATED);
 		return res;
 	}
 	

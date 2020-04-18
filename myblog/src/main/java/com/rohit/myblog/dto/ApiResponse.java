@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ApiResponse {
 	
-	   private HttpStatus status;
+	   private int status;
 	   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	   private LocalDateTime timestamp;
 	   private String message;
@@ -17,23 +17,23 @@ public class ApiResponse {
 	       timestamp = LocalDateTime.now();
 	   }
 
-	   public ApiResponse(HttpStatus status) {
+	   public ApiResponse(int status) {
 	       this();
 	       this.status = status;
 	       this.message = "Unexpected error";
 	   }
 
-	   public ApiResponse(HttpStatus status, String message) {
+	   public ApiResponse(int status, String message) {
 	       this();
 	       this.status = status;
 	       this.message = message;
 	   }
 
-	public HttpStatus getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(HttpStatus status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

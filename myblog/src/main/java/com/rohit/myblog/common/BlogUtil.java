@@ -9,11 +9,11 @@ public class BlogUtil {
 	
 	
 	public static ApiResponse buildApiResoponse(String message ,HttpStatus status) {
-		ApiResponse apiError = new ApiResponse(status,message);
+		ApiResponse apiError = new ApiResponse(status.value(),message);
 		return apiError;
 	}
 	public static ApiResponse buildApiResoponse(BlogException e) {
-		ApiResponse apiError = new ApiResponse(e.getErrorCode(), e.getErrorMessage());
+		ApiResponse apiError = new ApiResponse(e.getErrorCode().value(), e.getErrorMessage());
 		return apiError;
 	}
 

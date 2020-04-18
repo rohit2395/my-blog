@@ -17,14 +17,20 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 
 import { RegisterComponent } from './auth/register/register.component';
 
-import {RouterModule} from '@angular/router';
-
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    HomeComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +45,6 @@ import {HttpClientModule} from '@angular/common/http';
     MatDialogModule,
     MatCardModule,
     MatSnackBarModule,
-    RouterModule.forRoot([
-      {path: 'register',component: RegisterComponent}
-    ]),
     HttpClientModule
   ],
   providers: [],

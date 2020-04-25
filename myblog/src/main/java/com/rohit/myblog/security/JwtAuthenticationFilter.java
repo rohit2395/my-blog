@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +18,16 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rohit.myblog.common.BlogUtil;
+import com.rohit.myblog.exceptions.BlogException;
+import com.rohit.myblog.exceptions.Error;
+
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
+	public static final Logger LOG = LogManager.getLogger(JwtAuthenticationFilter.class);
+
+	
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
 	
@@ -31,7 +41,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		String token = getJwtFromRequest(request);
 		
 		if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
-			String username = jwtTokenProvider.getUsernameFromToken(token);
+			String username="";
+			try {
+				username = jwtTokenProvider.getUsernameFromToken(token);
+			} catch (BlogException e) {
+				LOG.error("Failed to get username from the token",e);
+			}
 			
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails

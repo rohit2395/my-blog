@@ -13,12 +13,14 @@ public class BlogException extends Exception{
 	private Exception e;
 	
 	public BlogException(Error error,Exception e) {
+		super(error.getMsg());
 		this.errorCode = error.getStatus();
 		this.errorMessage = error.getMsg();
 		this.e = e;
 	}
 	
 	public BlogException(Error error,String[] params,Exception e) {
+		super(error.getMsg());
 		this.errorCode = error.getStatus();
 		MessageFormat mf = new MessageFormat(error.getMsg());
 		this.errorMessage = mf.format(params);

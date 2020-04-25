@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Bean
 	public JwtAuthenticationFilter jwtAuthfilter() throws Exception{
@@ -42,9 +46,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("api/admin/**").hasAnyRole(Role.ADMIN.getVal())
 			.antMatchers("/api/user/**").hasAnyRole(Role.USER.getVal(),Role.ADMIN.getVal())
 			.anyRequest()
-			.authenticated();
-		
+			.authenticated().and()
+			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 		http.addFilterBefore(jwtAuthfilter(),UsernamePasswordAuthenticationFilter.class);
+		
 	}
 	
 	@Autowired

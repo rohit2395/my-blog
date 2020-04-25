@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.rohit</groupId>
+	<artifactId>myblog-project</artifactId>
+	<version>1.0.0</version>
+	<name>myblog-project</name>
+	 <packaging>pom</packaging>
+	<description>A wrapper around all the modules for blog application</description>
+
+	<properties>
+		<java.version>1.11</java.version>
+	</properties>
+	
+	<modules>
+		<module>myblog</module>
+	</modules>
+
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.6</version>
+				<configuration>
+					<inherited>false</inherited>
+					<linkXref>false</linkXref>
+					<sourceEncoding>utf-8</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>${java.version}</targetJdk>
+					<!--failOnViolation>${pmd.failOnViolation}</failOnViolation-->
+					<failOnViolation>false</failOnViolation>
+					<failurePriority>4</failurePriority>
+					<includeTests>true</includeTests>
+					<aggregate>false</aggregate>
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+							<!-- TODO Copy Paste Detector Currently Disabled
+							<goal>cpd-check</goal>
+							-->
+						</goals>
+					</execution>
+				</executions>     
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

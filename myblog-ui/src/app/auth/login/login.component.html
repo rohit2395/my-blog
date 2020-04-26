@@ -1,20 +1,25 @@
-<mat-card class="login-form justify-content-center">
-    <mat-card-header>
-        <mat-card-title>Please Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="inputUsername" class="sr-only">Username</label>
-                <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control"
-                    placeholder="Username" required="" autofocus="">
-            </div>
-            <div class="form-group">
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" [formControlName]="'password'" class="form-control"
-                    placeholder="Password" required="">
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-        </form>
-    </mat-card-content>
-</mat-card>
+<!-- <mat-dialog-content> -->
+    <mat-card class="login-form justify-content-center light-background">
+        <mat-card-header>
+            <mat-card-title class="form-title dark-text anson-font">Please Login</mat-card-title>
+        </mat-card-header>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-card-content>
+            <form class="form-signin light-background dark-text anson-font" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="inputUsername">Username:</label>
+                    <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control"
+                        placeholder="Username" required="" autofocus="">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password:</label>
+                    <input type="password" id="inputPassword" [formControlName]="'password'" class="form-control"
+                        placeholder="Password" required="">
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- btn-lg btn-primary btn-block  -->
+                <button class="btn btn-block form-signin" type="submit">Sign In</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+<!-- </mat-dialog-content> -->

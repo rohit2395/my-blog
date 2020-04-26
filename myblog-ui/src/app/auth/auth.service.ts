@@ -21,4 +21,17 @@ export class AuthService {
    login(loginPayload: LoginPayload): Observable<any>{
     return this.httpClient.post(BlogApi.AUTH_API_LOGIN,loginPayload,{observe: 'response' });
   }
+
+  isAuthenticated(): Boolean{
+    if(localStorage.getItem('username') != null && localStorage.getItem('auth-token') != null){
+      return true;
+    }else{
+      return false;
+    }   
+  }
+
+  logout(): void{
+    localStorage.removeItem('username');
+    localStorage.removeItem('auth-token');   
+  }
 }

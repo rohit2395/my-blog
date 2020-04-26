@@ -1,4 +1,39 @@
+/* 
+.form-title{
+    font-size: 30px;
+}
+
+.form-signin{
+    font-size: 20px;
+}
+
+.mat-card-header{
+    margin-top: 10px;
+    margin-bottom: 10px;
+} */
+
 .login-form{
     max-width: 25%;
     margin-left: 35%;
+}
+
+.form-title{
+    font-size: 30px;
+}
+
+.form-signin{
+    font-size: 20px;
+}
+
+
+.btn{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border-radius:0.20em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    text-align:center;
+    transition: all 0.5s;
+    background: #6BB02F;font-family: 'Anson-Regular', 'arial', sans-serif;
 }

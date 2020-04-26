@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatDialogModule} from  '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { RegisterComponent } from './auth/register/register.component';
 
@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MatDialogModule,
     MatCardModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

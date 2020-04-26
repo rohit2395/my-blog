@@ -50,7 +50,6 @@ public class JwtTokenProvider {
 			ALIAS = env.getProperty("keystore.alias");
 			SECRET = env.getProperty("keystore.secret");
 			expireAfterMin=Long.parseLong(env.getProperty("token.expireInMin"));
-			System.out.println("Expire after "+expireAfterMin);		
 			keyStore = KeyStore.getInstance("JKS");
 			InputStream inputStream = getClass().getResourceAsStream(env.getProperty("keystore.file"));
 			if(inputStream!=null)
@@ -67,7 +66,7 @@ public class JwtTokenProvider {
 
 	public String generateToken(Authentication authentication) throws BlogException {
 		User principal = (User) authentication.getPrincipal();
-		return Jwts.builder().setSubject(principal.getUsername()).signWith(getPrivateKey()).setExpiration(new Date(System.currentTimeMillis() + expireAfterMin  * 60L * 1000L / 4)).compact();
+		return Jwts.builder().setSubject(principal.getUsername()).signWith(getPrivateKey()).setExpiration(new Date(System.currentTimeMillis() + expireAfterMin  * 60L * 1000L)).compact();
 	}
 
 	private PrivateKey getPrivateKey() throws BlogException {

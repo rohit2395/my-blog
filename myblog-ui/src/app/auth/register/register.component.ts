@@ -54,7 +54,8 @@ export class RegisterComponent implements OnInit {
       console.log(data);
       if(data.status == '201'){
         this.openSnackBar(data.message,'Close');
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl('/home');
+        // this.dialogRef.close();
       }
       else
         this.openSnackBar('User registration failed','Close');
@@ -63,6 +64,23 @@ export class RegisterComponent implements OnInit {
       this.openSnackBar(error.error.message,'Close');
     });
   }
-
-
 }
+  
+// use this for pop up
+// @Component({
+//   template: ''
+// })
+// export class RegisterDialogEntryComponent {
+//   constructor(public dialog: MatDialog, private router: Router,
+//     private route: ActivatedRoute) {
+//     this.openDialog();
+//   }
+//   openDialog(): void {
+//     const dialogRef = this.dialog.open(RegisterComponent, {
+//       width: '500px',
+//     });
+//     dialogRef.afterClosed().subscribe(result => {
+//       this.router.navigate(['../'], { relativeTo: this.route });
+//     });
+//   }
+// }

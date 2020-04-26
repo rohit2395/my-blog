@@ -39,7 +39,7 @@ public class JwtTokenProvider {
 
 	private static String ALIAS;
 	private static String SECRET;
-	private static long expireAfterMin=60;
+	private static long expireAfterMin = 60;
 
 	@Autowired
 	private Environment env;
@@ -49,16 +49,16 @@ public class JwtTokenProvider {
 		try {
 			ALIAS = env.getProperty("keystore.alias");
 			SECRET = env.getProperty("keystore.secret");
-			expireAfterMin=Long.parseLong(env.getProperty("token.expireInMin"));
+			expireAfterMin = Long.parseLong(env.getProperty("token.expireInMin"));
 			keyStore = KeyStore.getInstance("JKS");
 			InputStream inputStream = getClass().getResourceAsStream(env.getProperty("keystore.file"));
-			if(inputStream!=null)
+			if (inputStream != null)
 				keyStore.load(inputStream, SECRET.toCharArray());
 			else {
 				LOG.error("Keystore not found");
-				throw new BlogException(Error.FAILED_TO_LOAD_KEYSTORE,null);
+				throw new BlogException(Error.FAILED_TO_LOAD_KEYSTORE, null);
 			}
-		} catch (NoSuchAlgorithmException | CertificateException | IOException | KeyStoreException  e) {
+		} catch (NoSuchAlgorithmException | CertificateException | IOException | KeyStoreException e) {
 			LOG.error("Failed to load keydtore", e);
 			throw new BlogException(Error.FAILED_TO_LOAD_KEYSTORE, e);
 		}
@@ -66,7 +66,9 @@ public class JwtTokenProvider {
 
 	public String generateToken(Authentication authentication) throws BlogException {
 		User principal = (User) authentication.getPrincipal();
-		return Jwts.builder().setSubject(principal.getUsername()).signWith(getPrivateKey()).setExpiration(new Date(System.currentTimeMillis() + expireAfterMin  * 60L * 1000L)).compact();
+		return Jwts.builder().setSubject(principal.getUsername()).claim("role", principal.getAuthorities())
+				.signWith(getPrivateKey()).setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + expireAfterMin)).compact();
 	}
 
 	private PrivateKey getPrivateKey() throws BlogException {
@@ -95,7 +97,7 @@ public class JwtTokenProvider {
 			LOG.error("token is invalid");
 			return false;
 		} catch (Exception e) {
-			LOG.error("Unexpected error ",e);
+			LOG.error("Unexpected error ", e);
 			return false;
 		}
 	}

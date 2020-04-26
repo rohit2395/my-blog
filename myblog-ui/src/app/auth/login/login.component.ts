@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginPayload } from './login-payload';
 import { Router} from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated())
+      this.router.navigateByUrl('/home');
   }
 
   onSubmit(): void {
@@ -50,10 +53,21 @@ export class LoginComponent implements OnInit {
     
     this.authService.login(this.loginPayload).subscribe(response => {
       response.headers.keys();
+
       var token = response.headers.headers.get('auth-token')[0];
-      console.log(token);
+      console.log('Storing data from token in local storage');
       localStorage.setItem('auth-token',token);
       localStorage.setItem('username',this.loginPayload.username+'');
+      var rolesArray = jwt_decode(token).role;
+      var rolesString = '';
+      for (let i = 0; i < rolesArray.length; i++) {
+        rolesString += rolesArray[i].authority + ",";
+      }
+      if(rolesString != ''){
+        rolesString = rolesString.slice(0,-1);
+      }
+      localStorage.setItem('user-role',rolesString);
+      this.authService.roles = rolesString;
       this.router.navigateByUrl('/home');
       // this.dialogRef.close();
     });

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>com.rohit</groupId>
 	<artifactId>myblog-project</artifactId>
 	<version>1.0.0</version>
 	<name>myblog-project</name>
-	 <packaging>pom</packaging>
+	<packaging>pom</packaging>
 	<description>A wrapper around all the modules for blog application</description>
 
 	<properties>
 		<java.version>1.11</java.version>
 	</properties>
-	
+
 	<modules>
 		<module>myblog</module>
 	</modules>
 
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -50,7 +50,28 @@
 					</execution>
 				</executions>     
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<executions>
+					<execution>
+						<id>build angular project</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<workingDirectory>${project.basedir}/myblog-ui</workingDirectory>
+							<executable>ng.cmd</executable>
+							<arguments>
+								<argument>build</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -68,7 +68,7 @@ public class JwtTokenProvider {
 		User principal = (User) authentication.getPrincipal();
 		return Jwts.builder().setSubject(principal.getUsername()).claim("role", principal.getAuthorities())
 				.signWith(getPrivateKey()).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + expireAfterMin)).compact();
+				.setExpiration(new Date(System.currentTimeMillis() + expireAfterMin * 60 * 1000)).compact();
 	}
 
 	private PrivateKey getPrivateKey() throws BlogException {

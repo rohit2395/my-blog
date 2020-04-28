@@ -1,1 +1,21 @@
-<p>add-post works!</p>
+<mat-card class="add-post justify-content-center light-background">
+  <mat-card-header>
+    <mat-card-title class="new-post-title dark-text anson-font">Add new post</mat-card-title>
+  </mat-card-header>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <mat-card-content>
+    <form class="light-background dark-text anson-font" [formGroup]="addPostForm" (ngSubmit)="addPost()">
+      <div class="form-group">
+        <label class="post-title">Title</label>
+        <input type="text" [formControlName]="'title'" class="form-control" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label class="post-content">Body</label>
+        <editor [formControlName]="'body'" [init]="getEditorConfiguration()" class="editor"></editor>
+      </div>
+      <div>
+        <button type="submit" class="btn">Post</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

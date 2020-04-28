@@ -17,11 +17,14 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { RegisterComponent } from './auth/register/register.component';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { HttpClientInterceptor } from './http-client-interceptor';
+  
 
 
 @NgModule({
@@ -48,9 +51,12 @@ import { AddPostComponent } from './add-post/add-post.component';
     MatCardModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    EditorModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

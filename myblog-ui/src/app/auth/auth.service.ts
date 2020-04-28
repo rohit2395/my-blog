@@ -5,6 +5,7 @@ import { BlogApi } from '../blog-api';
 import { Observable } from 'rxjs';
 import { LoginPayload } from './login/login-payload';
 import * as jwt_decode from 'jwt-decode';
+import { PostPayload } from '../add-post/post-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,12 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
+  getToken():String{
+    return this.token;
+  }
+  getUserName():String{
+    return this.username;
+  }
   getUserRoles(): String{
     return this.roles;
   }

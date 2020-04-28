@@ -3,5 +3,6 @@ export class BlogApi{
 
     public static AUTH_API_REGISTER= BlogApi.API_ENDPOINT + "auth/signup";
     public static AUTH_API_LOGIN= BlogApi.API_ENDPOINT + "auth/login";
+    public static POST_API_ADD = BlogApi.API_ENDPOINT + "posts";
 
 }

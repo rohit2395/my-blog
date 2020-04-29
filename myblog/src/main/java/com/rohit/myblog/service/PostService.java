@@ -39,8 +39,8 @@ public class PostService {
 		LOG.info("Creating new user post");
 		
 		Post post = mapFromDtoToPost(userPost);
-		post.setName(userDetailsService.loadAppUserByUsername(userPost.getUsername()).getName());
 		if(post != null) { 
+			post.setName(userDetailsService.loadAppUserByUsername(userPost.getUsername()).getName());
 			try {
 				postRepository.save(post);
 			}catch(Exception e) {

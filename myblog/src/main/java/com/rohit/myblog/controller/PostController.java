@@ -36,6 +36,7 @@ public class PostController {
 		try {
 			postService.createPost(userPost);
 		} catch (BlogException e) {
+			LOG.error("failed to create post ",e.getErrorMessage());
 			return new ResponseEntity<ApiResponse>(BlogUtil.buildApiResoponse(e),e.getErrorCode());
 		}
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(

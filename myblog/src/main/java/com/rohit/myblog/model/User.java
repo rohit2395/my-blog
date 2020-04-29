@@ -28,6 +28,10 @@ public class User {
 	
 	@Column
 	private String role;
+	
+	@Column
+	private String name;
+	
 
 	public Long getId() {
 		return id;
@@ -67,6 +71,20 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

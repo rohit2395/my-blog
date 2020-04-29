@@ -40,7 +40,7 @@ public class LoginService {
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 	
-	public void createUser(UserRegistration userRegistration) throws BlogException{
+	public String createUser(UserRegistration userRegistration) throws BlogException{
 		User user = new User();
 		try {
 			LOG.info("Registering user {}",userRegistration.getUsername());
@@ -48,10 +48,15 @@ public class LoginService {
 			user.setPassword(passwordEncoder.encode(userRegistration.getPassword()));
 			user.setEmail(userRegistration.getEmail());
 			user.setRole(Role.USER.getVal());
+			user.setName(userRegistration.getName());
 			userRepository.save(user);
+			UserLogin userLogin = new UserLogin();
+			userLogin.setUsername(userRegistration.getUsername());
+			userLogin.setPassword(userRegistration.getPassword());
+			return login(userLogin);
 		}catch(Exception e) {
 			LOG.error("Failed to register user",e);
-			throw new BlogException(Error.USER_REGISTRATION_FAILED,e);
+			throw new BlogException(Error.USER_REGISTRATION_FAILED,new String[] {userRegistration.getUsername()},e);
 		}
 		
 	}
@@ -65,7 +70,7 @@ public class LoginService {
 				userLogin.getPassword()));
 		}catch(BadCredentialsException e) {
 			LOG.error("Username or password is invalid",e);
-			throw new BlogException(Error.USER_LOGIN_FAILED,new String[] {userLogin.getUsername()}, e);
+			throw new BlogException(Error.USER_LOGIN_FAILED, e);
 		}catch(Exception e) {
 			LOG.error("Unexpected error occurred while authenticating user {}",userLogin.getUsername(),e);
 			throw new BlogException(Error.GENERAL_ERROR, e);

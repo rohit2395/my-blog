@@ -34,6 +34,9 @@ public class Post {
 	@NotBlank
 	@Column
 	private String username;
+	
+	@Column
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -82,6 +85,19 @@ public class Post {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
 
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

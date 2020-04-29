@@ -8,6 +8,7 @@ public class UserPost {
 	private String title;
 	private String content;
 	private String username;
+	private String name;
 	private Instant createdOn;
 
 	public Long getId() {
@@ -39,6 +40,18 @@ public class UserPost {
 	}
 	public void setCreatedOn(Instant createdOn) {
 		this.createdOn = createdOn;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

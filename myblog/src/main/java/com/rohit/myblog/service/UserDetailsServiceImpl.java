@@ -30,6 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				true, true, true, true, getAuthorites(user.getRole()));
 		return userDetails;
 	}
+	
+	public User loadAppUserByUsername(String username) throws UsernameNotFoundException {
+		User user;
+		user = userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Username not found " + username));
+		return user;
+	}
 
 	private Collection<? extends GrantedAuthority> getAuthorites(String role) {
 		return Collections.singletonList(new SimpleGrantedAuthority(role));

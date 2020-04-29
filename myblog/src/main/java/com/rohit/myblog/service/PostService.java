@@ -10,7 +10,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.UnexpectedRollbackException;
 
 import com.rohit.myblog.dto.UserPost;
 import com.rohit.myblog.exceptions.BlogException;
@@ -28,15 +30,20 @@ public class PostService {
 
 	@Autowired
 	private PostRepository postRepository;
+	
+	@Autowired
+	UserDetailsServiceImpl userDetailsService;
 
 	@Transactional
 	public void createPost(UserPost userPost) throws BlogException {
 		LOG.info("Creating new user post");
+		
 		Post post = mapFromDtoToPost(userPost);
+		post.setName(userDetailsService.loadAppUserByUsername(userPost.getUsername()).getName());
 		if(post != null) { 
 			try {
 				postRepository.save(post);
-			}catch(IllegalArgumentException e) {
+			}catch(Exception e) {
 				LOG.error("Failed to created new user post",e);
 				throw new BlogException(Error.FAILED_TO_CREATE_NEW_POST,e);
 			}
@@ -106,6 +113,7 @@ public class PostService {
 			userPost.setTitle(post.getTitle());
 			userPost.setContent(post.getContent());
 			userPost.setUsername(post.getUsername());
+			userPost.setName(post.getName());
 			userPost.setCreatedOn(post.getCreatedOn());
 		}
 		return userPost;

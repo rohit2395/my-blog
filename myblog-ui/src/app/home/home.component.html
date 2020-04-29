@@ -1,0 +1,29 @@
+<div>
+    <mat-card class="container mat-elevation-z6 green-background">
+        <mat-card-header>
+            <mat-card-title class="blogs dark-text anson-font">Public Blogs</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <mat-card class="post light-background mat-elevation-z6" *ngFor="let post of posts">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <a type="button" href="" class="post-title dark-text anson-font">{{post.title}}</a>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="post-content dark-text anson-font">
+                        <div class="author">
+                            <i> Author:</i> {{post.username}}[{{post.name}}]
+                        </div>
+                        <div class="blog-data">
+                            <p [innerHTML]="post.content"></p>
+                        </div>
+                        <div>
+                            <a type="button" href="" class="read-more btn dar">Read More</a>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

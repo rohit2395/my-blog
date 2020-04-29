@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginPayload } from './login-payload';
 import { Router} from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
+import { BlogConstants } from 'src/app/constant';
 
 @Component({
   selector: 'app-login',
@@ -47,11 +48,10 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.loginPayload.username = this.loginForm.get('username').value;
     this.loginPayload.password = this.loginForm.get('password').value;
-
-    console.log("Username: "+this.loginForm.get('username').value);
-    console.log("Password: "+this.loginForm.get('password').value);
     
     this.authService.login(this.loginPayload).subscribe(response => {
+      console.log(response);
+      
       response.headers.keys();
 
       var token = response.headers.headers.get('auth-token')[0];
@@ -70,6 +70,13 @@ export class LoginComponent implements OnInit {
       this.authService.roles = rolesString;
       this.router.navigateByUrl('/home');
       // this.dialogRef.close();
+    },error=>{
+      console.log(error);
+      if(error.status == 401){
+        this.openSnackBar(error.error.message, 'Close');
+      }else{
+        this.openSnackBar(BlogConstants.SOMETHING_WENT_WRONG, 'Close');
+      }
     });
   }
 }

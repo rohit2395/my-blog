@@ -24,6 +24,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { HttpClientInterceptor } from './http-client-interceptor';
+import { ProfileComponent } from './profile/profile.component';
   
 
 
@@ -35,7 +36,8 @@ import { HttpClientInterceptor } from './http-client-interceptor';
     LoginComponent,
     HomeComponent,
     NotfoundComponent,
-    AddPostComponent
+    AddPostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

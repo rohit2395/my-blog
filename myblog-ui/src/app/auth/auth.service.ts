@@ -22,8 +22,12 @@ export class AuthService {
 
    }
 
+   testConnetion():Observable<any>{
+    return this.httpClient.get(BlogApi.AUTH_API_REGISTER,{observe: 'response' });
+   }
+
    register(registerPayload: RegisterPayload): Observable<any>{
-     return this.httpClient.post(BlogApi.AUTH_API_REGISTER,registerPayload);
+     return this.httpClient.post(BlogApi.AUTH_API_REGISTER,registerPayload,{observe: 'response' });
    }
 
    login(loginPayload: LoginPayload): Observable<any>{

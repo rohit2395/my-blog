@@ -9,7 +9,7 @@ public enum Error {
 	
 	//User login errors
 	USER_REGISTRATION_FAILED("User {0} registration failed",HttpStatus.INTERNAL_SERVER_ERROR),
-	USER_LOGIN_FAILED("Authentication failed for user {0}",HttpStatus.UNAUTHORIZED),
+	USER_LOGIN_FAILED("Username of passwrod is wrong",HttpStatus.UNAUTHORIZED),
 	USER_NOT_LOGGED_IN("User not logged in",HttpStatus.UNAUTHORIZED),
 	INALID_TOKEN("Token is invalid",HttpStatus.FORBIDDEN),
 	

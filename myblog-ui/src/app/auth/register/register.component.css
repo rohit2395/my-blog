@@ -1,17 +1,4 @@
-/* .register-form{
-    height: 500px;
-    width: 40%;
-    margin-left: 300px;
-}
 
-
-
-
-
-.mat-card-header{
-    margin-top: 10px;
-    margin-bottom: 10px;
-} */
 
 .form-title{
     font-size: 30px;
@@ -19,7 +6,7 @@
 
 .register-form{
     max-width: 25%;
-    margin-left: 35%;
+    margin-left: 37.5%;
 }
 .form-signup{
     font-size: 20px;

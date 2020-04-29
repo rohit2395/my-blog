@@ -5,6 +5,7 @@ import { RegisterComponent} from './auth/register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'add-post', component: AddPostComponent },
+  { path: 'profile', component: ProfileComponent },
   {path: '**', redirectTo: '/404'},
   {path: '404', component: NotfoundComponent}
 ];

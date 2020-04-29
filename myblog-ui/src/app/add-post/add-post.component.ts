@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { PostPayload } from './post-payload';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddPostService } from './add-post.service';
+import { BlogConstants } from '../constant';
 
 @Component({
   selector: 'app-add-post',
@@ -29,6 +30,7 @@ export class AddPostComponent implements OnInit {
     });
 
     this.postPayload = {
+      name:'',
       username:'',
       title:'',
       content:''
@@ -52,20 +54,26 @@ export class AddPostComponent implements OnInit {
 
     this.postPayload.title = this.addPostForm.get('title').value;
     this.postPayload.content = this.addPostForm.get('body').value;
+    this.postPayload.username = this.authService.getUserName() + '';
     console.log(this.postPayload);
     
     this.addPostService.addPost(this.postPayload).subscribe(data => {
-      console.log(data);
       if(data.status == '201'){
         this.openSnackBar(data.message,'Close');
-        this.router.navigateByUrl('/home');
         // this.dialogRef.close();
       }
-      else
-        this.openSnackBar('User registration failed','Close');
+      else{
+        console.log(data);
+        this.openSnackBar(BlogConstants.SOMETHING_WENT_WRONG,'Close');
+      }
+      this.router.navigateByUrl('/profile');
     }, error => {
       console.log(error);
-      this.openSnackBar(error.error.message,'Close');
+      if(error.status == 500){
+        this.openSnackBar(error.error.message, 'Close');
+      }else{
+        this.openSnackBar(BlogConstants.SOMETHING_WENT_WRONG, 'Close');
+      }
     });
   }
 

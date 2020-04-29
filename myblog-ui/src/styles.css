@@ -10,26 +10,26 @@ body { margin: 0; font-family: 'Anson-Regular', 'arial', sans-serif; }
 
 .mat-snack-bar-container{
     color:#595957;
-    background-color: #E1E1E1;
+    background-color: rgb(235, 235, 235);
 }
 
 .dark-background{
     background: #595957;
 }
 .light-background{
-    background:#E1E1E1
+    background:rgb(235, 235, 235);
 }
 .dark-text{
     color: #595957;
 }
 .light-text{
-    color: #E1E1E1;
+    color: rgb(235, 235, 235);
 }
 .green-background{
     background: #6BB02F;
 }
 .hover-background:hover{
-    background-color:#E1E1E1;
+    background-color:rgb(235, 235, 235);
     color: #595957;
 }
 

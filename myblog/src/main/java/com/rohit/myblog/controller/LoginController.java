@@ -29,16 +29,30 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	@PostMapping("/test")
+	public ResponseEntity<?> test(){
+		LOG.info("Testing connection");
+		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
+				BlogUtil.buildApiResoponse(UIMessages.CONN_TESTED,HttpStatus.OK)
+				,HttpStatus.OK);
+		return res;
+	}
+	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserRegistration userRegistration){
 		LOG.info("Receieved request for user registration..");
+		StringBuilder token = null;
 		try {
-			loginService.createUser(userRegistration);
+			token = new StringBuilder("Bearer ");
+			token.append(loginService.createUser(userRegistration));
 		} catch (BlogException e) {
 			return new ResponseEntity<ApiResponse>(BlogUtil.buildApiResoponse(e),e.getErrorCode());
 		}
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set(BlogConstants.TOKEN_HEADER_KEY, token.toString());
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
 				BlogUtil.buildApiResoponse(UIMessages.USER_REGISTERED,HttpStatus.CREATED)
+				,responseHeaders
 				,HttpStatus.CREATED);
 		return res;
 	}

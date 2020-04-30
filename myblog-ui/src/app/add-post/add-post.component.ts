@@ -37,11 +37,7 @@ export class AddPostComponent implements OnInit {
     }
    }
 
-  ngOnInit(): void {
-    
-    if(!this.authService.isAuthenticated())
-      this.router.navigateByUrl('/login');
-  }
+  ngOnInit(): void {  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

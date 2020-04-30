@@ -5,6 +5,10 @@
     padding:40px;
 }
 
+.blog-data{
+    margin-left: 15px;
+}
+
 .blogs{
     font-size: 30px;
     font-weight: 350;
@@ -18,6 +22,10 @@
     font-size: 25px;
     font-weight: 300;
     
+}
+
+.post-title:hover{
+    color: #6BB02F;
 }
 
 .post-content{

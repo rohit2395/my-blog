@@ -1,0 +1,16 @@
+<div>
+    <mat-card class="container mat-elevation-z6 green-background">
+        <mat-card-header>
+            <mat-card-title class="post-title dark-text anson-font">{{post.title}}</mat-card-title>
+        </mat-card-header>
+        <hr>
+        <mat-card-content class="post-content light-background anson-font mat-elevation-z6">
+            <div class="author">
+                {{post.username}}[{{post.name}}]
+            </div>
+            <div class="blog-data">
+                <p [innerHTML]="post.content"></p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

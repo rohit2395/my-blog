@@ -6,16 +6,19 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PostComponent } from './post/post.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent ,canActivate:[AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'add-post', component: AddPostComponent },
-  { path: 'profile', component: ProfileComponent },
-  {path: '**', redirectTo: '/404'},
+  { path: 'add-post', component: AddPostComponent,canActivate:[AuthGuard] },
+  { path: 'posts/:id', component: PostComponent,canActivate:[AuthGuard]},
+  { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard] },
+  {path: '**', redirectTo: '/404',canActivate:[AuthGuard]},
   {path: '404', component: NotfoundComponent}
 ];
 

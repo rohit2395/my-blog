@@ -7,10 +7,13 @@
             <a mat-button href="/add-post" class="add-post anson-font header-button dark-text hover-background" *ngIf="isAuthenticatedUser()">Add Post</a>
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-3">
-            <a mat-button href="/login" class="login anson-font header-button dark-text hover-background" *ngIf="!isAuthenticatedUser()">Login</a>
-            <a mat-button href="/login" class="login anson-font header-button dark-text hover-background" *ngIf="isAuthenticatedUser()" (click)="logout()">Logout</a>
-            <a mat-button href="/register" class="register anson-font header-button dark-text hover-background" *ngIf="!isAuthenticatedUser()">Register</a>
+        <div class="col-md-3" *ngIf="!isAuthenticatedUser()">
+            <a mat-button href="/login" class="login anson-font header-button dark-text hover-background">Login</a>
+            <a mat-button href="/register" class="register anson-font header-button dark-text hover-background">Register</a>
+        </div>
+        <div class="col-md-3" *ngIf="isAuthenticatedUser()">
+            <a mat-button href="/login" class="login anson-font header-button dark-text hover-background" (click)="logout()">Logout</a>
+            <a mat-button href="/profile" class="register anson-font header-button dark-text hover-background">Profile</a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

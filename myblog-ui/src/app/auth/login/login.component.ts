@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router) {
     this.loginForm = this.formBuilder.group({
-      username: 'rohit',
-      password: 'rohit'
+      username: '',
+      password: ''
     });
 
     this.loginPayload = {

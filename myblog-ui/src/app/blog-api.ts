@@ -7,6 +7,7 @@ export class BlogApi{
     public static AUTH_API_LOGIN= BlogApi.API_ENDPOINT + "auth/login";
 
     public static POST_API_ADD = BlogApi.API_ENDPOINT + "posts";
-    public static POST_API_GET_ALL = BlogApi.API_ENDPOINT + "posts/all"
+    public static POST_API_GET_ALL = BlogApi.API_ENDPOINT + "posts/all";
+    public static POST_API_GET_POST = BlogApi.API_ENDPOINT + "posts/get";
 
 }

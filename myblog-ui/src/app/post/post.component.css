@@ -1,0 +1,42 @@
+.container{
+    max-width: 75%;
+    /* z-index: -1; */
+    margin-bottom: 30px;
+    padding:40px;
+}
+
+.post{
+    margin-top: 10px;
+    border-radius:0.50em;
+}
+
+.post-title{
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.author{
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.post-content{
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 20px;
+    /* border-style: solid;
+    border-color: #595957; */
+    padding:20px;
+    border-radius:0.50em;
+}
+
+.blog-data{
+    /* height: 500px; */
+}
+
+hr { 
+    height: 2px;
+    background: #595957;
+    border-radius:0.50em; 
+} 

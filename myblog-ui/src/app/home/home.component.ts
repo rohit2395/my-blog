@@ -19,11 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private homeService: HomeService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-
-    if (!this.authService.isAuthenticated())
-      this.router.navigateByUrl('/login');
-
-    this.getAllPosts();
+      this.getAllPosts();
   }
 
   openSnackBar(message: string, action: string) {

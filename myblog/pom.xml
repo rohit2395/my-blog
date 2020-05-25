@@ -22,20 +22,21 @@
 	<profiles>
 		<profile>
 			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<properties>
-				<spring.profiles.active>dev</spring.profiles.active>
-			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
+				<activatedProperties>prod</activatedProperties>
 			</properties>
 		</profile>
 	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -81,7 +82,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -99,6 +100,11 @@
 			<scope>runtime</scope>
 			<version>0.10.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -109,11 +115,11 @@
 			</plugin>
 		</plugins>
 		<resources>
-        <resource>
-            <directory>src/main/resources</directory>
-            <filtering>false</filtering>
-        </resource>
-    </resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 
 </project>

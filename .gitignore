@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 myblog/logs
+logs
 
 ### STS ###
 .apt_generated

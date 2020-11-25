@@ -1,5 +1,8 @@
 export class BlogApi{
-    public static API_ENDPOINT='http://localhost:8090/api/';
+	
+  //  public static API_ENDPOINT='http://localhost:8080/api/';
+
+    public static API_ENDPOINT='http://myblog-server:8123/api/';
 
     
     public static AUTH_API_TEST_CONN= BlogApi.API_ENDPOINT + "auth/test";

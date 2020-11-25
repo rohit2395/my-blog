@@ -1,5 +1,14 @@
 package com.rohit.myblog.controller;
 
+import com.rohit.myblog.annotations.CustomAnnotation;
+import com.rohit.myblog.common.BlogConstants;
+import com.rohit.myblog.common.BlogUtil;
+import com.rohit.myblog.common.UIMessages;
+import com.rohit.myblog.dto.ApiResponse;
+import com.rohit.myblog.dto.UserLogin;
+import com.rohit.myblog.dto.UserRegistration;
+import com.rohit.myblog.exceptions.BlogException;
+import com.rohit.myblog.service.LoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rohit.myblog.common.BlogConstants;
-import com.rohit.myblog.common.BlogUtil;
-import com.rohit.myblog.common.UIMessages;
-import com.rohit.myblog.dto.ApiResponse;
-import com.rohit.myblog.dto.UserLogin;
-import com.rohit.myblog.dto.UserRegistration;
-import com.rohit.myblog.exceptions.BlogException;
-import com.rohit.myblog.service.LoginService;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,9 +30,10 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
-	
+
+	@CustomAnnotation
 	@PostMapping("/test")
-	public ResponseEntity<?> test(){
+	public ResponseEntity<?> test(HttpServletRequest request){
 		LOG.info("Testing connection");
 		ResponseEntity<ApiResponse> res = new ResponseEntity<ApiResponse>(
 				BlogUtil.buildApiResoponse(UIMessages.CONN_TESTED,HttpStatus.OK)

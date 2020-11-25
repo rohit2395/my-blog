@@ -26,6 +26,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { HttpClientInterceptor } from './http-client-interceptor';
 import { ProfileComponent } from './profile/profile.component';
 import { PostComponent } from './post/post.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   
 
 
@@ -59,7 +60,8 @@ import { PostComponent } from './post/post.component';
     EditorModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true},
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })

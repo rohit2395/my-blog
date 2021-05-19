@@ -61,7 +61,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true},
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })

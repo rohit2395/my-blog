@@ -10,16 +10,26 @@ import { PostComponent } from './post/post.component';
 import { AuthGuard } from './auth.guard';
 
 
-const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent ,canActivate:[AuthGuard]},
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'add-post', component: AddPostComponent,canActivate:[AuthGuard] },
-  { path: 'posts/:id', component: PostComponent,canActivate:[AuthGuard]},
-  { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard] },
-  {path: '**', redirectTo: '/404',canActivate:[AuthGuard]},
-  {path: '404', component: NotfoundComponent}
+export const routes: Routes = [
+  {
+    path:'',
+    children: [
+      // { path: '', redirectTo: '/home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent ,canActivate:[AuthGuard]},
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      { path: 'register', component: RegisterComponent,pathMatch: 'full'},
+      { path: 'login', component: LoginComponent ,pathMatch: 'full'},
+      { path: 'add-post', component: AddPostComponent,canActivate:[AuthGuard] ,pathMatch: 'full'},
+      { path: 'posts/:id', component: PostComponent,canActivate:[AuthGuard],pathMatch: 'full'},
+      { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard] ,pathMatch: 'full'},
+      {path: '**', component: NotfoundComponent,canActivate:[AuthGuard],pathMatch: 'full'},
+      // {path: '404', component: NotfoundComponent}
+    ]
+  }
 ];
 
 @NgModule({
